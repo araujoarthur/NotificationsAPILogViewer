@@ -66,6 +66,12 @@ begin
     var Progress: Extended := 0;
     var Increment: Extended := 100/Length(gStateHolder.CurrentFile.FLogEntries);
     ProgressBarInc(0);
+
+    {
+      I decided to make invisible while I add the entries so the it doesn't have to draw every single entry on each insert.
+      By setting it to Visible := False before the loop and True after the loop I got it to render all at once, which
+      **Improved significantly the Load time for 217 records**. Still fails for 3.000
+    }
     contentScrollBox.Visible := False;
     for var I := Length(gStateHolder.CurrentFile.FLogEntries) - 1 downto 0 do
     begin

@@ -325,12 +325,11 @@ object frmMain: TfrmMain
       WordWrap = False
       Proportional = True
       Stretch = True
-      ExplicitTop = -6
     end
     object scGPLabel1: TscGPLabel
       Left = 25
       Top = 0
-      Width = 142
+      Width = 152
       Height = 25
       Align = alLeft
       Font.Charset = DEFAULT_CHARSET
@@ -616,7 +615,6 @@ object frmMain: TfrmMain
       ActivePage = scGPToolPagerPage2
       FreeOnClose = False
       StorePaintBuffer = True
-      ExplicitTop = 3
       object scGPGlyphButton3: TscGPGlyphButton
         Left = 0
         Top = 0
