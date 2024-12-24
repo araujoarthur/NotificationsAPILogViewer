@@ -7,7 +7,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, scControls, scGPControls, scStyledForm,
   scGPPagers, scGPExtControls, Vcl.Menus, scGrids, scDBGrids, NLVLib.FileHandling, NLVLib.Utils,
   Vcl.StdCtrls, scAdvancedControls, scExtControls, Frames.ListItemTemplate,
-  scImageCollection;
+  scImageCollection, Vcl.ComCtrls;
 
 type
   TfrmMain = class(TForm)
@@ -23,13 +23,13 @@ type
     pbRead: TscGPProgressBar;
     ContentPanel: TscGPPanel;
     statusBarPanel: TscGPPanel;
-    contentScrollBox: TscScrollBox;
     pmFiles: TPopupMenu;
     Open1: TMenuItem;
     Close1: TMenuItem;
     scImage1: TscImage;
     scImageCollection1: TscImageCollection;
     scGPLabel1: TscGPLabel;
+    contentListView: TscListView;
     procedure CloseBtnClick(Sender: TObject);
     procedure MinimizeBtnClick(Sender: TObject);
     procedure Open1Click(Sender: TObject);
@@ -72,18 +72,20 @@ begin
       By setting it to Visible := False before the loop and True after the loop I got it to render all at once, which
       **Improved significantly the Load time for 217 records**. Still fails for 3.000
     }
-    contentScrollBox.Visible := False;
+    //contentListView.Visible := False;
     for var I := Length(gStateHolder.CurrentFile.FLogEntries) - 1 downto 0 do
     begin
       var rec := gStateHolder.CurrentFile.FLogEntries[I];
-      var frame := TEntryListItemTemplate.Create(contentScrollBox, rec, contentScrollBox.ControlCount);
+      var ListItem: TListItem := TListItem.Create(nil);
+      ListItem.Caption := '';
+      var frame := TEntryListItemTemplate.Create(contentListView, rec, contentListView.ControlCount);
       frame.Name := TypeUtils.GenerateFrameName();
-      contentScrollBox.InsertControl(frame);
+      contentListView.InsertControl(frame);
       Progress := Progress + Increment;
       ProgressBarInc(Round(Progress));
     end;
-
-    contentScrollBox.Visible := True;  // System out of Resources. How to deal with?
+    contentListView.Items.Count := Length(gStateHolder.CurrentFile.FLogEntries);
+    //contentListView.Visible := True;  // System out of Resources. How to deal with?
 
   end;
 end;
@@ -100,10 +102,10 @@ end;
 
 procedure TfrmMain.Close1Click(Sender: TObject);
 begin
-  while contentScrollBox.ControlCount > 0 do
+  while contentListView.ControlCount > 0 do
   begin
-    var ControlToRemoveCpy := contentScrollBox.Controls[contentScrollBox.ControlCount - 1];
-    contentScrollBox.RemoveControl(contentScrollBox.Controls[contentScrollBox.ControlCount - 1]);
+    var ControlToRemoveCpy := contentListView.Controls[contentListView.ControlCount - 1];
+    contentListView.RemoveControl(contentListView.Controls[contentListView.ControlCount - 1]);
     ControlToRemoveCpy.Free;
   end;
 end;

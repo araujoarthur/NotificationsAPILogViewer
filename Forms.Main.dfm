@@ -865,27 +865,32 @@ object frmMain: TfrmMain
     Sizeable = False
     WallpaperIndex = -1
     WordWrap = False
-    object contentScrollBox: TscScrollBox
+    object contentListView: TscListView
       Left = 0
       Top = 0
       Width = 663
       Height = 319
-      HorzScrollBar.Tracking = True
-      VertScrollBar.Tracking = True
+      FluentUIOpaque = False
       Align = alClient
       BevelEdges = []
       BevelInner = bvNone
       BevelOuter = bvNone
       BorderStyle = bsNone
+      Columns = <>
+      ExtendedColumnDraw = False
+      FlatScrollBars = True
+      OwnerData = True
+      OwnerDraw = True
       TabOrder = 0
-      UseWheelForScrolling = True
-      WallpaperIndex = -1
-      CustomBackgroundImageIndex = -1
-      FullUpdate = True
-      FluentUIOpaque = False
-      StorePaintBuffer = False
-      MouseWheelSupport = False
-      BackgroundStyle = scsbsFormBackground
+      ViewStyle = vsReport
+      SelectionStyle = scstStyled
+      ShowFocusRect = True
+      AlternateRow = False
+      GridLines = False
+      DefaultDraw = False
+      SelectionColor = clNone
+      SelectionTextColor = clHighlightText
+      ExplicitTop = -6
     end
   end
   object statusBarPanel: TscGPPanel
