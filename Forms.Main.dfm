@@ -16,6 +16,7 @@ object frmMain: TfrmMain
   Font.Style = []
   Position = poScreenCenter
   StyleElements = []
+  OnResize = FormResize
   TextHeight = 15
   object headerPanel: TscGPPanel
     Left = 0
@@ -865,32 +866,44 @@ object frmMain: TfrmMain
     Sizeable = False
     WallpaperIndex = -1
     WordWrap = False
-    object contentListView: TscListView
+    object contentListView: TListView
       Left = 0
       Top = 0
       Width = 663
       Height = 319
-      FluentUIOpaque = False
       Align = alClient
-      BevelEdges = []
-      BevelInner = bvNone
-      BevelOuter = bvNone
       BorderStyle = bsNone
-      Columns = <>
-      ExtendedColumnDraw = False
-      FlatScrollBars = True
+      Columns = <
+        item
+          Caption = 'Severity'
+          Width = 95
+        end
+        item
+          Caption = 'Date'
+          MaxWidth = 165
+          MinWidth = 165
+          Width = 165
+        end
+        item
+          Caption = 'Data'
+          MaxWidth = 290
+          MinWidth = 290
+          Width = 290
+        end
+        item
+          Caption = 'Actions'
+          MaxWidth = 112
+          MinWidth = 112
+          Width = 112
+        end>
       OwnerData = True
       OwnerDraw = True
+      ReadOnly = True
+      ParentShowHint = False
+      PopupMenu = pmContentListView
+      ShowHint = False
       TabOrder = 0
       ViewStyle = vsReport
-      SelectionStyle = scstStyled
-      ShowFocusRect = True
-      AlternateRow = False
-      GridLines = False
-      DefaultDraw = False
-      SelectionColor = clNone
-      SelectionTextColor = clHighlightText
-      ExplicitTop = -6
     end
   end
   object statusBarPanel: TscGPPanel
@@ -1069,5 +1082,14 @@ object frmMain: TfrmMain
       end>
     Left = 544
     Top = 289
+  end
+  object pmContentListView: TPopupMenu
+    OnPopup = pmContentListViewPopup
+    Left = 432
+    Top = 25
+    object ViewDetails1: TMenuItem
+      Caption = 'View Details'
+      OnClick = ViewDetails1Click
+    end
   end
 end

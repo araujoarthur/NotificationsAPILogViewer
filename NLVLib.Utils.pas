@@ -3,7 +3,7 @@ unit NLVLib.Utils;
 interface
 
 uses
-  System.SysUtils, NLVLib.FileHandling;
+  Windows, CommCtrl, System.SysUtils, NLVLib.FileHandling, VCL.ComCtrls;
 
 type
   ActionUtils = record
@@ -13,6 +13,10 @@ type
   TypeUtils = record
     class function ByteArrayToStrOfBytes(ALine: TBytes): String; static;
     class function GenerateFrameName: String; static;
+  end;
+
+  UIUtils = record
+    class function GetSubItemRect(LV: TListView; ItemIndex, SubItemIndex: Integer; var Rect: TRect): Boolean; static;
   end;
 
 implementation
@@ -87,6 +91,14 @@ end;
 class function TypeUtils.GenerateFrameName: String;
 begin
   result :=  'FRAME_' + StringReplace(StringReplace(StringReplace(TGuid.NewGuid.ToString, '{', '', [rfReplaceAll]), '}', '', [rfReplaceAll]), '-','',[rfReplaceAll]);
+end;
+
+{ UIUtils }
+
+class function UIUtils.GetSubItemRect(LV: TListView; ItemIndex,
+  SubItemIndex: Integer; var Rect: TRect): Boolean;
+begin
+  Result := ListView_GetSubItemRect(LV.Handle, ItemIndex, SubItemIndex, LVIR_BOUNDS, @Rect);
 end;
 
 end.

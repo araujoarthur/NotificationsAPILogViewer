@@ -13,9 +13,9 @@ object EntryListItemTemplate: TEntryListItemTemplate
   ParentColor = False
   TabOrder = 0
   object labelDateTime: TscGPLabel
-    Left = 73
+    Left = 70
     Top = 0
-    Width = 138
+    Width = 150
     Height = 60
     Align = alLeft
     Font.Charset = ANSI_CHARSET
@@ -57,9 +57,9 @@ object EntryListItemTemplate: TEntryListItemTemplate
   end
   object scGPPanel1: TscGPPanel
     AlignWithMargins = True
-    Left = 214
+    Left = 223
     Top = 3
-    Width = 317
+    Width = 308
     Height = 54
     Align = alClient
     Padding.Left = 10
@@ -107,7 +107,7 @@ object EntryListItemTemplate: TEntryListItemTemplate
       AlignWithMargins = True
       Left = 13
       Top = 3
-      Width = 291
+      Width = 282
       Height = 48
       Align = alClient
       Font.Charset = ANSI_CHARSET
@@ -152,7 +152,7 @@ object EntryListItemTemplate: TEntryListItemTemplate
   object scGPPanel2: TscGPPanel
     Left = 0
     Top = 0
-    Width = 73
+    Width = 70
     Height = 60
     Align = alLeft
     FluentUIOpaque = False
